@@ -26,13 +26,13 @@ bot.onText(/\/Workout/, (msg) => {
         return (response.json())
     }).then(function (json) {
         let workout_type = json[0].Workout_type
-        bot.sendMessage(msg.chat.id, "Workout Type: " + workout_type)
+        bot.sendMessage(msg.chat.id, "Workout Type:" + workout_type)
 
         let workout_desc = json[0].Workout_description.split(';;')
         bot.sendMessage(msg.chat.id, "Workout Description: ")
         workout_desc.map(line => bot.sendMessage(msg.chat.id, line))
         setTimeout(function () {
-            bot.sendMessage(msg.chat.id, "Workout Extra: ")
+            bot.sendMessage(msg.chat.id, "Workout Extra:")
             let workout_extra = json[0].Workout_extra.split(';;')
             workout_extra.map(line => bot.sendMessage(msg.chat.id, line))
         }, 2000)
