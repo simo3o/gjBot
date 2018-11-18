@@ -1,0 +1,5 @@
+server/.vscode/**
+server/node_modules/**
+Telegram_bot/node_modules/*
+server/config.js
+Telegram_bot/config.js

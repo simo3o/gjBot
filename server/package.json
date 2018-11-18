@@ -1,0 +1,16 @@
+{
+  "name": "gj_server",
+  "version": "1.0.0",
+  "description": "backend api for gj_bot",
+  "main": "./server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0"
+  }
+}
