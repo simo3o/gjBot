@@ -32,6 +32,32 @@ app.get('/users/:Name', function (req, res) {
     )
 })
 
+app.post('/createUser', function (req, res) {
+    let userObject = {
+        "User_name": req.body.Name,
+        "User_type": req.body.Type,
+        "Active_tracks": req.body.Track
+    }
+    try {
+        dataLayer.createUser(userObject).then(function (jsonResponse) {
+            res.json(jsonResponse)
+        })
+    }
+    catch{
+        throw new Error("Error creating user")
+    }
+})
+
+app.post('/updateUser', function (req, res) {
+    let userObject = {
+        "User_name": req.body.User_name,
+        "User_type": req.body.User_type,
+        "Active_tracks": req.body.Active_tracks
+    }
+    dataLayer.updateUser(userObject).then(function (response) {
+        res.json(response)
+    })
+})
 app.get('/currentWorkout/:Name/:trackName', function (req, res) {
     let userName = req.params.Name
     let track = req.params.trackName.split('_').join(' ')
@@ -63,19 +89,20 @@ app.get('/allTrack/:trackName', function (req, res) {
     })
 })
 
-app.post('/createUser', function (req, res) {
-    let userObject = {
-        "User_name": req.body.Name,
-        "User_type": req.body.Type,
-        "Active_tracks": req.body.Track
+app.get('/availableTracks', function (req, res) {
+    try {
+        dataLayer.availableTracks().then(function (json) {
+            let flattenTracks = json.flat()
+            let availableTracks = []
+            flattenTracks.map(x => {
+                if (availableTracks.indexOf(x) == -1) { availableTracks.push(x) }
+            })
+            res.json(availableTracks)
+        })
+    } catch{
+        throw new Error("Error querying db")
     }
-    // try {
-    dataLayer.createUser(userObject).then(function (jsonResponse) {
-        res.json(jsonResponse)
-    })
-    // }
-    // catch{
-    //     throw new Error("Error creating user")
-    // }
 })
+
+
 app.listen(3000)
