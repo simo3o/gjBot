@@ -24,8 +24,19 @@ let FetchFind = function (url, parameters) {
         })
 }
 
-let fetchAvailableTracks = function () {
+let fetchAvailableTypes = function () {
     return fetch(workoutsDbUrl + '/_design/byField/_view/Type').then(function (response) {
+        let a = response.json()
+        return a
+    }).then(function (json) {
+        return json.rows[0].value
+    }).catch(function (err) {
+        throw new Error("Error fetching tracks ");
+    })
+}
+
+let fetchAvailableTracks = function () {
+    return fetch(workoutsDbUrl + '/_design/Tracks/_view/TrackNames').then(function (response) {
         let a = response.json()
         return a
     }).then(function (json) {
@@ -123,6 +134,14 @@ exports.createUser = function (userInfo) {
 exports.availableTracks = function () {
     try {
         return fetchAvailableTracks()
+    } catch{
+        throw new Error('Error getting track')
+    }
+}
+
+exports.availableTypes = function () {
+    try {
+        return fetchAvailableTypes()
     } catch{
         throw new Error('Error getting track')
     }

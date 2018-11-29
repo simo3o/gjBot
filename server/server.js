@@ -103,6 +103,19 @@ app.get('/availableTracks', function (req, res) {
         throw new Error("Error querying db")
     }
 })
-
+app.get('/availableTypes', function (req, res) {
+    try {
+        dataLayer.availableTypes().then(function (json) {
+            let flattenTracks = json.flat()
+            let availableTracks = []
+            flattenTracks.map(x => {
+                if (availableTracks.indexOf(x) == -1) { availableTracks.push(x) }
+            })
+            res.json(availableTracks)
+        })
+    } catch{
+        throw new Error("Error querying db")
+    }
+})
 
 app.listen(3000)
