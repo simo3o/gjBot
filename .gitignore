@@ -5,3 +5,4 @@ server/config.js
 Telegram_bot/config.js
 .vscode/*
 Telegram_bot/.vscode/*
+server/.vscode/*
