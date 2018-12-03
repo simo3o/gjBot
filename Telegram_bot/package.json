@@ -1,0 +1,22 @@
+{
+  "name": "telegram_bot",
+  "version": "1.0.0",
+  "description": "telegram bot for gjbot",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "node-fetch": "^2.3.0",
+    "node-telegram-bot-api": "^0.30.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "start": "SET NODE_ENV=dev && node index.js",
+    "test": "mocha"
+  },
+  "author": "simo3o",
+  "license": "ISC"
+}
