@@ -1,10 +1,10 @@
 const fetch = require('node-fetch')
 const config = require('./config.js')
 
-const userDbUrl = config.userDbUrl
-const workoutsDbUrl = config.workoutsDbUrl
+const userDbUrl = config.userDbUrl;
+const workoutsDbUrl = config.workoutsDbUrl;
 
-var exports = module.exports = {}
+var exports = module.exports = {};
 
 let FetchFind = function (url, parameters) {
     return fetch(url + '/_find', {
@@ -14,7 +14,7 @@ let FetchFind = function (url, parameters) {
         },
         body: JSON.stringify(parameters),
     }).then(function (response) {
-        return (response.json())
+        return (response.json());
     })
         .then(function (json) {
             return (json.docs)
@@ -35,11 +35,11 @@ exports.getQuery = function (selector) {
 }
 
 exports.getUser = function (user) {
-    let bodyQuery = exports.getQuery({ "User_name": user })
+    let bodyQuery = exports.getQuery({ "User_name": user });
     try {
-        return FetchFind(userDbUrl, bodyQuery)
+        return FetchFind(userDbUrl, bodyQuery);
     } catch {
-        throw new Error("Error Getting user: ")
+        throw new Error("Error Getting user: ");
     }
 }
 
@@ -49,18 +49,18 @@ exports.getWorkout = function (trackName, workoutNumber) {
         "Workout_order": workoutNumber
     })
     try {
-        return FetchFind(workoutsDbUrl, bodyQuery)
+        return FetchFind(workoutsDbUrl, bodyQuery);
     } catch {
-        throw new Error('Error getting workout')
+        throw new Error('Error getting workout');
     }
 }
 
 exports.getCurrentWorkout = function (startDate) {
-    let currentDate = new Date()
-    let firstDate = new Date(startDate)
-    let timeDiff = Math.abs(currentDate.getTime() - firstDate.getTime())
-    let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
-    return diffDays
+    let currentDate = new Date();
+    let firstDate = new Date(startDate);
+    let timeDiff = Math.abs(currentDate.getTime() - firstDate.getTime());
+    let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return diffDays;
 }
 
 exports.getTrack = function (trackName) {
@@ -74,9 +74,9 @@ exports.getTrack = function (trackName) {
         "execution_stats": true
     }
     try {
-        return FetchFind(workoutsDbUrl, bodyQuery)
+        return FetchFind(workoutsDbUrl, bodyQuery);
     } catch{
-        throw new Error('Error getting track')
+        throw new Error('Error getting track');
     }
 }
 
@@ -102,13 +102,13 @@ exports.createUser = function (userInfo) {
             return (response.json())
         })
             .then(function (json) {
-                return (json)
+                return (json);
             })
             .catch(function (err) {
                 throw new Error("Error Creating User ");
             }
             )
     } catch{
-        throw new Error('Error Creating User')
+        throw new Error('Error Creating User');
     }
 }
