@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "lodash": ">=4.17.12",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "node-fetch": "^2.3.0"
